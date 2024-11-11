@@ -178,7 +178,7 @@ export default {
 
 <style scoped>
   #app-container {
-    padding: 0px 20px;
+    padding: 0px 20px 30px;
   }
   .alert {
     position: sticky;
