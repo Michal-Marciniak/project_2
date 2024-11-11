@@ -49,30 +49,30 @@ export default {
           name: "Wydarzenie 1",
           start_date: "2024-11-01",
           end_date: "2024-11-01",
-          event_image: "path/to/image1.jpg",
           event_category_id: 1,
           event_category_name: "Kategoria 1",
           event_description: "Opis wydarzenia 1",
+          event_image: ""
         },
         {
           id: 2,
           name: "Wydarzenie 2",
           start_date: "2024-11-02",
           end_date: "2024-11-02",
-          event_image: "path/to/image2.jpg",
           event_category_id: 2,
           event_category_name: "Kategoria 2",
           event_description: "Opis wydarzenia 2",
+          event_image: ""
         },
         {
           id: 3,
           name: "Wydarzenie 3",
           start_date: "2024-11-03",
           end_date: "2024-11-03",
-          event_image: "path/to/image3.jpg",
           event_category_id: 3,
           event_category_name: "Kategoria 3",
           event_description: "Opis wydarzenia 3",
+          event_image: ""
         }
       ],
       informationModalMessage: '',
@@ -110,7 +110,7 @@ export default {
         this.saveEvents();
       } 
       this.$router.push('/');
-      this.setInformationModalMessage('Wydarzenie zaaktualizowane pomyślnie!');
+      this.setInformationModalMessage('Wydarzenie zaktualizowane pomyślnie!');
     },
     deleteEvent(eventId) {
       this.events = this.events.filter(event => event.id !== eventId);
@@ -136,7 +136,7 @@ export default {
           }
         });
         this.saveEvents();
-        this.setInformationModalMessage('Kategoria zaaktualizowana pomyślnie!');
+        this.setInformationModalMessage('Kategoria zaktualizowana pomyślnie!');
       } 
       this.$router.push({ name: 'categories' });
     },
