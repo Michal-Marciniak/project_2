@@ -18,7 +18,7 @@
     </div>
     <div class="mb-3">
       <label for="event_category_name" class="form-label">Kategoria</label>
-      <select v-model="formData.event_category_name" class="form-control" required>
+      <select v-model="formData.event_category_name" class="form-control" style="cursor: pointer;" required>
         <option v-for="category in categories" :key="category.id" :value="category.name">
           {{ category.name }}
         </option>
