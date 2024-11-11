@@ -48,6 +48,7 @@ export default {
         event_category_id: this.event ? this.event.event_category_id : null,
         event_category_name: this.event ? this.event.event_category_name : '',
         event_description: this.event ? this.event.event_description : '',
+        event_image: this.event ? this.event.event_image : '',
       }
     };
   },
@@ -57,7 +58,7 @@ export default {
       if (file) {
         const reader = new FileReader();
         reader.onload = e => {
-          this.event_image = e.target.result;
+          this.formData.event_image = e.target.result;
         };
         reader.readAsDataURL(file);
       }
@@ -79,6 +80,7 @@ export default {
           this.formData.event_category_id = newValue.event_category_id;
           this.formData.event_category_name = newValue.event_category_name;
           this.formData.event_description = newValue.event_description;
+          this.formData.event_image = newValue.event_image;
         }
       }
     }
