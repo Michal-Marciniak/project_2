@@ -30,6 +30,7 @@
       @add-category="addCategory" 
       @update-category="updateCategory"
       @delete-category="deleteCategory"
+      @sorted-events="updateSortedEvents"
     />
   </div>
 </template>
@@ -170,7 +171,12 @@ export default {
       setTimeout(() => {
         this.showErrorMessage = false;
         this.showSuccessMessage = false;
+        this.informationModalMessage = '';
       }, 3000);
+    },
+    updateSortedEvents(sortedEvents) {
+      this.events = sortedEvents;
+      this.saveEvents();
     }
   }
 };
