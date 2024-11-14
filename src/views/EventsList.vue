@@ -89,7 +89,7 @@ export default {
           const rangeTo = new Date(this.selectedDateRange.to);
           return eventStartDate >= rangeFrom && eventEndDate <= rangeTo;
         });
-        this.$emit('sorted-events', sortedDateRange);
+        this.$emit('sorted-events-date-range', sortedDateRange);
       }
     }
   }

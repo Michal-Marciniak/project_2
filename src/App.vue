@@ -31,6 +31,7 @@
       @update-category="updateCategory"
       @delete-category="deleteCategory"
       @sorted-events="updateSortedEvents"
+      @sorted-events-date-range="updateSortedEventsDateRange"
     />
   </div>
 </template>
@@ -177,6 +178,9 @@ export default {
     updateSortedEvents(sortedEvents) {
       this.events = sortedEvents;
       this.saveEvents();
+    },
+    updateSortedEventsDateRange(sortedEvents) {
+      this.events = sortedEvents;
     }
   }
 };
