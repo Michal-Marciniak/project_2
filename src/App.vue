@@ -121,26 +121,42 @@ export default {
       this.setInformationModalMessage('Wydarzenie usunięte pomyślnie!');
     },
     addCategory(newCategory) {
-      this.categories.push({ ...newCategory, id: Date.now() });
-      this.saveCategories();
-      this.$router.push({ name: 'categories' });
-      this.setInformationModalMessage('Kategoria dodana pomyślnie!');
+      if(this.isCategoryNameUnique(newCategory.name) && newCategory.name.trim() !== '') {
+        this.categories.push({ ...newCategory, id: Date.now() });
+        this.saveCategories();
+        this.$router.push({ name: 'categories' });
+        this.setInformationModalMessage('Kategoria dodana pomyślnie!');
+      } else if (!this.isCategoryNameUnique(newCategory.name)) {
+        this.$router.push({ name: 'categories' });
+        this.setInformationModalMessage('Kategoria o podanej nazwie już istnieje!', false);
+      } else if(newCategory.name.trim() === '') {
+        this.$router.push({ name: 'categories' });
+        this.setInformationModalMessage('Nazwa kategorii nie może być pusta!', false);
+      }
     },
     updateCategory(updatedCategory) {
-      const index = this.categories.findIndex(category => category.id === updatedCategory.id);
-      if (index !== -1) {
-        this.categories.splice(index, 1, updatedCategory);
-        this.saveCategories();
+      if(this.isCategoryNameUnique(updatedCategory.name) && updatedCategory.name.trim() !== '') {
+        const index = this.categories.findIndex(category => category.id === updatedCategory.id);
+        if (index !== -1) {
+          this.categories.splice(index, 1, updatedCategory);
+          this.saveCategories();
 
-        this.events.forEach(event => {
-          if (event.event_category_id === updatedCategory.id) {
-            event.event_category_name = updatedCategory.name;
-          }
-        });
-        this.saveEvents();
-        this.setInformationModalMessage('Kategoria zaktualizowana pomyślnie!');
-      } 
-      this.$router.push({ name: 'categories' });
+          this.events.forEach(event => {
+            if (event.event_category_id === updatedCategory.id) {
+              event.event_category_name = updatedCategory.name;
+            }
+          });
+          this.saveEvents();
+          this.$router.push({ name: 'categories' });
+          this.setInformationModalMessage('Kategoria zaktualizowana pomyślnie!');
+        } 
+      } else if(!this.isCategoryNameUnique(updatedCategory.name)) {
+        this.$router.push({ name: 'categories' });
+        this.setInformationModalMessage('Kategoria o podanej nazwie już istnieje!', false);
+      } else if(updatedCategory.name.trim() === '') {
+        this.$router.push({ name: 'categories' });
+        this.setInformationModalMessage('Nazwa kategorii nie może być pusta!', false);
+      }
     },
     deleteCategory(categoryId) {
       let isCategoryInUse = false;
@@ -181,6 +197,9 @@ export default {
     },
     updateSortedEventsDateRange(sortedEvents) {
       this.events = sortedEvents;
+    },
+    isCategoryNameUnique(newCategoryName) {
+      return !this.categories.some(category => category.name.toLowerCase() === newCategoryName.toLowerCase());
     }
   }
 };
