@@ -7,7 +7,7 @@
           <th>Data Początkowa</th>
           <th>Data Końcowa</th>
           <th>Kategoria</th>
-          <th>Akcje</th>
+          <th class="d-print-none">Akcje</th>
         </tr>
       </thead>
       <tbody>
@@ -16,7 +16,7 @@
           <td>{{ event.start_date }}</td>
           <td>{{ event.end_date }}</td>
           <td>{{ event.event_category_name }}</td>
-          <td>
+          <td class="d-print-none">
             <button @click="$router.push({ name: 'edit-event', params: { id: event.id } })" class="btn btn-primary btn-sm edit-button">Edytuj</button>
             <button @click="$emit('delete-event', event.id)" class="btn btn-danger btn-sm">Usuń</button>
           </td>

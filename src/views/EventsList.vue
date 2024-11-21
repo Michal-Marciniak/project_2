@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-5">
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between d-print-none">
       <div>
         <button @click="$router.push({ name: 'add-event' })" class="btn btn-success mb-3">Dodaj Wydarzenie +</button>
       </div>
