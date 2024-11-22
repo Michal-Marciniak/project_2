@@ -153,10 +153,23 @@ Aby uruchomić aplikację lokalnie, wymagana jest instalacja następujących nar
 
 **Popup'y**
 
+**Wydarzenia**
+
 ![image](https://github.com/user-attachments/assets/e3196266-01a9-4693-885e-c9aceadc34be)
 ![image](https://github.com/user-attachments/assets/c707c93f-cb7d-4fb4-aa88-b4c827107f2d)
 ![image](https://github.com/user-attachments/assets/68b130bc-51b1-4e67-bae1-db9d93de9d01)
 
+**Kategorie**
+
+![image](https://github.com/user-attachments/assets/0901c904-4fc7-4321-82ce-6d82e2cae217)
+![image](https://github.com/user-attachments/assets/6765f20b-081e-4bf7-bc23-ae5abcbb5610)
+![image](https://github.com/user-attachments/assets/89ca7da2-e392-4df1-92e4-ac3d52b3344f)
+
+**Walidacje**
+![image](https://github.com/user-attachments/assets/c0d18331-8636-43a4-9eb6-efe04eefb995)
+![image](https://github.com/user-attachments/assets/d8bf4734-073f-4cf5-99a7-73f3970c1ad7)
+![image](https://github.com/user-attachments/assets/86be712a-620a-46e1-a446-c1940ee0af1c)
+![image](https://github.com/user-attachments/assets/01659861-f7da-4a26-a585-e12a68a8902f)
 
 ---
 
