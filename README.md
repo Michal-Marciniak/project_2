@@ -125,6 +125,117 @@ Aby uruchomić aplikację lokalnie, wymagana jest instalacja następujących nar
 
 ## Opis kodu źródłowego
 
+Aplikacja zarządza wydarzeniami i kategoriami z wykorzystaniem komponentów wielokrotnego użytku i dynamicznego przekazywania danych oraz zdarzeń pomiędzy komponentami. Główna logika zarządzania danymi znajduje się w pliku `App.vue`, gdzie zaimplementowano metody obsługujące dodawanie, edycję, usuwanie oraz sortowanie danych.
+
+---
+
+### **Emitowane zdarzenia (eventy)**
+
+W aplikacji zdefiniowane są eventy emitowane przez komponenty i obsługiwane przez główny komponent `App.vue`. Są one przypisane w `@click`, `@input` oraz w innych miejscach.
+
+#### **Lista eventów:**
+1. **Zarządzanie wydarzeniami:**
+   - `@add-event`: Dodaje nowe wydarzenie.
+   - `@update-event`: Aktualizuje istniejące wydarzenie.
+   - `@delete-event`: Usuwa wydarzenie.
+   - `@sorted-events`: Aktualizuje listę wydarzeń po sortowaniu (np. według nazw lub dat).
+   - `@sorted-events-date-range`: Filtruje wydarzenia według zakresu dat.
+
+2. **Zarządzanie kategoriami:**
+   - `@add-category`: Dodaje nową kategorię.
+   - `@update-category`: Aktualizuje istniejącą kategorię.
+   - `@delete-category`: Usuwa kategorię.
+
+---
+
+### **Najważniejsze funkcje w `App.vue`**
+
+#### **1. Zarządzanie wydarzeniami:**
+- **`addEvent(newEvent)`**
+  - Dodaje nowe wydarzenie do listy `events`.
+  - Zapisuje zaktualizowaną listę w `localStorage`.
+  - Przekierowuje użytkownika na stronę główną (`/`).
+  - Wyświetla powiadomienie o pomyślnym dodaniu wydarzenia.
+
+- **`updateEvent(updatedEvent)`**
+  - Znajduje wydarzenie o określonym `id` i aktualizuje jego dane.
+  - Zapisuje zmiany w `localStorage`.
+  - Przekierowuje użytkownika na stronę główną.
+  - Wyświetla powiadomienie o pomyślnej aktualizacji.
+
+- **`deleteEvent(eventId)`**
+  - Usuwa wydarzenie na podstawie jego `id`.
+  - Aktualizuje `localStorage` i przekierowuje na stronę główną.
+  - Wyświetla powiadomienie o pomyślnym usunięciu wydarzenia.
+
+#### **2. Zarządzanie kategoriami:**
+- **`addCategory(newCategory)`**
+  - Sprawdza unikalność nazwy kategorii oraz jej poprawność.
+  - Jeśli nazwa jest unikalna i poprawna, dodaje nową kategorię z unikalnym `id` (opartym na `Date.now()`).
+  - Zapisuje zaktualizowaną listę w `localStorage` i przekierowuje do `/categories`.
+  - Wyświetla odpowiedni komunikat sukcesu lub błędu.
+
+- **`updateCategory(updatedCategory)`**
+  - Sprawdza unikalność nazwy oraz jej poprawność.
+  - Jeśli warunki są spełnione, aktualizuje dane kategorii w `categories`.
+  - Aktualizuje również nazwę kategorii w powiązanych wydarzeniach w liście `events`.
+  - Zapisuje zmiany w `localStorage` i przekierowuje do `/categories`.
+  - Wyświetla odpowiedni komunikat sukcesu lub błędu.
+
+- **`deleteCategory(categoryId)`**
+  - Sprawdza, czy kategoria jest powiązana z którymkolwiek wydarzeniem.
+  - Jeśli nie jest używana, usuwa kategorię z listy.
+  - Jeśli jest w użyciu, wyświetla komunikat o błędzie.
+  - Aktualizuje zmiany w `localStorage`.
+
+#### **3. Obsługa lokalnego przechowywania (`localStorage`):**
+- **`loadData()`**
+  - Ładuje dane wydarzeń i kategorii z `localStorage` przy uruchomieniu aplikacji.
+  - Jeśli dane nie istnieją, używane są dane domyślne.
+
+- **`saveEvents()`**
+  - Zapisuje listę `events` do `localStorage`.
+
+- **`saveCategories()`**
+  - Zapisuje listę `categories` do `localStorage`.
+
+#### **4. Obsługa powiadomień:**
+- **`setInformationModalMessage(message, isSuccessMessage = true)`**
+  - Ustawia treść wiadomości powiadomienia (`informationModalMessage`).
+  - Wyświetla komunikat o sukcesie lub błędzie w zależności od parametru `isSuccessMessage`.
+  - Ukrywa wiadomość po 3 sekundach.
+
+#### **5. Sortowanie i filtrowanie wydarzeń:**
+- **`updateSortedEvents(sortedEvents)`**
+  - Aktualizuje listę wydarzeń na podstawie posortowanych danych.
+  - Zapisuje zmiany w `localStorage`.
+
+- **`updateSortedEventsDateRange(sortedEvents)`**
+  - Aktualizuje listę wydarzeń na podstawie filtrów zakresu dat.
+
+---
+
+### **Najważniejsze dane aplikacji**
+
+1. **Kategorie (`categories`)**
+   - Tablica obiektów zawierająca właściwości:
+     - `id`: Unikalny identyfikator kategorii.
+     - `name`: Nazwa kategorii.
+
+2. **Wydarzenia (`events`)**
+   - Tablica obiektów zawierająca właściwości:
+     - `id`: Unikalny identyfikator wydarzenia.
+     - `name`: Nazwa wydarzenia.
+     - `start_date`: Data rozpoczęcia wydarzenia.
+     - `end_date`: Data zakończenia wydarzenia.
+     - `event_category_id`: Identyfikator przypisanej kategorii.
+     - `event_category_name`: Nazwa przypisanej kategorii.
+     - `event_description`: Opis wydarzenia.
+     - `event_image`: Ścieżka do obrazu wydarzenia.
+
+### **Podsumowanie**
+Kod aplikacji w `App.vue` centralizuje obsługę danych i logikę zdarzeń. Wykorzystanie eventów do komunikacji między komponentami i główną aplikacją pozwala na modularność i czytelność kodu. Funkcje zarządzające danymi są zintegrowane z `localStorage`, co umożliwia trwałe przechowywanie danych użytkownika bez potrzeby korzystania z backendu. Obsługa powiadomień, sortowania i filtrowania ułatwia korzystanie z aplikacji oraz poprawia jej użyteczność.
+
 ---
 
 ## Zrzuty ekranu
