@@ -17,8 +17,8 @@
           <td>{{ event.end_date }}</td>
           <td>{{ event.event_category_name }}</td>
           <td class="d-print-none">
-            <button @click="$router.push({ name: 'edit-event', params: { id: event.id } })" class="btn btn-primary btn-sm edit-button">Edytuj</button>
-            <button @click="$emit('delete-event', event.id)" class="btn btn-danger btn-sm">Usuń</button>
+            <button @click.stop="$router.push({ name: 'edit-event', params: { id: event.id } })" class="btn btn-primary btn-sm edit-button">Edytuj</button>
+            <button @click.stop="$emit('delete-event', event.id)" class="btn btn-danger btn-sm">Usuń</button>
           </td>
         </tr>
       </tbody>
