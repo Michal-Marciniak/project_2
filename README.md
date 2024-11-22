@@ -135,6 +135,29 @@ Aby uruchomić aplikację lokalnie, wymagana jest instalacja następujących nar
 
 **Lista kategorii**
 
+![image](https://github.com/user-attachments/assets/e7c9ebd8-7119-40e6-aa46-4d462732f2a5)
+
+**Formularz dodawania wydarzenia**
+
+![image](https://github.com/user-attachments/assets/800cebc0-483a-4934-b8d4-0882d0dc10f2)
+
+**Formularz dodawania kategorii**
+
+![image](https://github.com/user-attachments/assets/99bbb8c8-6ae4-4fb4-b3e7-787a18d07224)
+
+**Sortowanie oraz filtrowanie wydarzeń**
+
+![image](https://github.com/user-attachments/assets/b0327c1c-2e0a-44f2-9165-fb4b395057d3)
+
+---
+
+**Popup'y**
+
+![image](https://github.com/user-attachments/assets/e3196266-01a9-4693-885e-c9aceadc34be)
+![image](https://github.com/user-attachments/assets/c707c93f-cb7d-4fb4-aa88-b4c827107f2d)
+![image](https://github.com/user-attachments/assets/68b130bc-51b1-4e67-bae1-db9d93de9d01)
+
+
 ---
 
 ## Drukowanie zawartości pamiętnika
