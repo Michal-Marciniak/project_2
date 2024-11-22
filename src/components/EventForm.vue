@@ -6,12 +6,13 @@
     </div>
     <div class="mb-3">
       <label for="start_date" class="form-label">Data Początkowa</label>
-      <input type="date" v-model="formData.start_date" class="form-control" required />
+      <input type="date" v-model="formData.start_date" class="form-control" required @input="validateDates"/>
     </div>
     <div class="mb-3">
       <label for="end_date" class="form-label">Data Końcowa</label>
-      <input type="date" v-model="formData.end_date" class="form-control" required />
+      <input type="date" v-model="formData.end_date" class="form-control" required @input="validateDates"/>
     </div>
+    <p v-if="errorMessage" style="color: red;">{{ errorMessage }}</p>
     <div class="mb-3">
       <label for="event_image" class="form-label">Zdjęcie Wydarzenia</label>
       <input type="file" @change="onFileChange" class="form-control" />
@@ -49,10 +50,25 @@ export default {
         event_category_name: this.event ? this.event.event_category_name : '',
         event_description: this.event ? this.event.event_description : '',
         event_image: this.event ? this.event.event_image : '',
-      }
+      },
+      errorMessage: ''
     };
   },
   methods: {
+    validateDates() {
+      if (this.formData.start_date && this.formData.end_date) {
+        const start = new Date(this.formData.start_date);
+        const end = new Date(this.formData.end_date);
+
+        if (end < start) {
+          this.errorMessage = 'Data końcowa nie może być wcześniejsza niż data początkowa.';
+        } else {
+          this.errorMessage = '';
+        }
+      } else {
+        this.errorMessage = '';
+      }
+    },
     onFileChange(event) {
       const file = event.target.files[0];
       if (file) {
@@ -64,9 +80,11 @@ export default {
       }
     },
     submitForm() {
-      const selectedCategory = this.categories.filter(category => category.name === this.formData.event_category_name);
-      const eventData = { ...this.formData, event_category_id: selectedCategory[0].id };
-      this.event ? this.$emit("submit-edit-event", eventData) : this.$emit("submit-add-event", eventData);
+      if(this.errorMessage === '') {
+        const selectedCategory = this.categories.filter(category => category.name === this.formData.event_category_name);
+        const eventData = { ...this.formData, event_category_id: selectedCategory[0].id };
+        this.event ? this.$emit("submit-edit-event", eventData) : this.$emit("submit-add-event", eventData);
+      }
     }
   },
   watch: {
