@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 d-print-none">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light mb-4 d-print-none">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">Lista Wydarzeń</a>
         <div class="collapse navbar-collapse">
